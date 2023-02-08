@@ -7,10 +7,53 @@
       "name": "TopicHolder",
       "extends": [
         "bpmn:ServiceTask"
+        , "bpmn:Task"
       ],
       "properties": [
         {
           "name": "topic",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "name": "Version",
+      "extends": [
+        "bpmn:ServiceTask"
+        , "bpmn:Task"
+      ],
+      "properties": [
+        {
+          "name": "version",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "name": "Epic",
+      "extends": [
+        "bpmn:ServiceTask"
+        , "bpmn:Task"
+      ],
+      "properties": [
+        {
+          "name": "epic",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "name": "Story",
+      "extends": [
+        "bpmn:ServiceTask"
+        , "bpmn:Task"
+      ],
+      "properties": [
+        {
+          "name": "story",
           "isAttr": true,
           "type": "String"
         }

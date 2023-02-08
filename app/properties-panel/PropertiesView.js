@@ -12,8 +12,9 @@ export default class PropertiesView extends Component {
 
     this.state = {
       selectedElements: [],
-      element: null
+      element: null,
     };
+
   }
 
   componentDidMount() {
@@ -119,6 +120,30 @@ function ElementProperties(props) {
     });
   }
 
+  function updateVersion(version) {
+    const modeling = modeler.get('modeling');
+
+    modeling.updateProperties(element, {
+      'custom:version': version
+    });
+  }
+
+  function updateEpic(epic) {
+    const modeling = modeler.get('modeling');
+
+    modeling.updateProperties(element, {
+      'custom:epic': epic
+    });
+  }
+
+  function updateStory(story) {
+    const modeling = modeler.get('modeling');
+
+    modeling.updateProperties(element, {
+      'custom:story': story
+    });
+  }
+
   function makeMessageEvent() {
 
     const bpmnReplace = modeler.get('bpmnReplace');
@@ -198,6 +223,51 @@ function ElementProperties(props) {
             <input value={ element.businessObject.get('custom:topic') } onChange={ (event) => {
               updateTopic(event.target.value)
             } } />
+          </fieldset>
+      }
+
+      {
+        is(element, 'custom:Version') &&
+          <fieldset>
+            <label>version</label>
+            <select 
+              value={ element.businessObject.get('custom:version') }
+              onChange={e => updateVersion(e.target.value)} 
+            >
+              <option value='testVersion'>Test Version</option>
+              <option value='testVersion2'>Test Version2</option>
+              <option value='testVersion3'>Test Version3</option>
+            </select>
+          </fieldset>
+      }
+
+      {
+        is(element, 'custom:Epic') &&
+          <fieldset>
+            <label>epic</label>
+            <select 
+              value={ element.businessObject.get('custom:epic') }
+              onChange={e => updateEpic(e.target.value)} 
+            >
+              <option value='testEpic'>Test Epic</option>
+              <option value='testEpic2'>Test Epic2</option>
+              <option value='testEpic3'>Test Epic3</option>
+            </select>
+          </fieldset>
+      }
+
+      {
+        is(element, 'custom:Story') &&
+          <fieldset>
+            <label>story</label>
+            <select 
+              value={ element.businessObject.get('custom:story') }
+              onChange={e => updateStory(e.target.value)} 
+            >
+              <option value='testStory'>Test Story</option>
+              <option value='testStory2'>Test Story2</option>
+              <option value='testStory3'>Test Story3</option>
+            </select>
           </fieldset>
       }
 
